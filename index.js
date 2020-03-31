@@ -1,7 +1,7 @@
 console.log('starting...');
 const Discord = require('discord.js');
 const bot = new Discord.Client();
-bot.login('NTcwMzk5NDYxMzUyODAwMjg1.XMByrQ.kKLqhtcxCQYyTgKrP00cWEg1njg');
+bot.login('');
 bot.on('ready', () => {
     console.log('Connected');
     //bot.user.setActivity('$help');
