@@ -1,0 +1,106 @@
+{
+    "command": {
+      "help": {
+        "name": "help",
+        "syntax": "help str",
+        "description": "Outputs list of commands or info on a specific command (ex: $help turd).",
+        "example": "$help, $help turd"
+      },
+      "turd": {
+        "name": "turd",
+        "syntax": "turd, turd id",
+        "description": "Returns your or another persons turds.",
+        "example": "$turd, $turd @Bot Carl"
+      },
+      "gn": {
+        "name": "gn",
+        "syntax": "gn int",
+        "description": "Used to guess the secret number, gn means guess number.",
+        "example": "$gn 22"
+      },
+	  "bet": {
+        "name": "bet",
+        "syntax": "bet id amount, bet accept id",
+        "description": "Used to bet your turds against other players.",
+        "example": "$bet @Bot Carl 2, $bet accept @Bot Carl"
+      },
+	  "join": {
+        "name": "join",
+        "syntax": "join int",
+        "description": "Costs 1 turd per join/leave. For the number indicated the bot will join and leave again, making an anoying sound.",
+        "example": "$join 5"
+      },
+	  "leave": {
+        "name": "leave",
+        "syntax": "leave",
+        "description": "Costs 5x the cost to join, then Bot Carl will leave vc.",
+        "example": "$leave"
+      },
+	  "t": {
+        "name": "t",
+        "syntax": "t, t int",
+        "description": "Play tic tac toe again Bot Carl (Win +1, lose -50).",
+        "example": "$t, $t 4"
+	  },
+	  "s": {
+        "name": "s",
+        "syntax": "s, s int",
+        "description": "Play snake, when you lose you gain your score as turds. wasd for movement.",
+        "example": "$s, $s 1"
+	  }
+    },
+	"adminCommand": {
+	  "save": {
+        "name": "save",
+        "syntax": "save"
+	  },
+	  "say": {
+        "name": "say",
+        "syntax": "say str"
+	  },
+	  "load": {
+        "name": "load",
+        "syntax": "load"
+	  },
+	  "set": {
+        "name": "set",
+        "syntax": "set turd/num ID int"
+	  },
+	  "add": {
+        "name": "add",
+        "syntax": "add turd ID int"
+	  },
+	  "sub": {
+        "name": "sub",
+        "syntax": "sub turd ID int"
+	  },
+	  "sayy": {
+        "name": "sayy",
+        "syntax": "sayy str"
+	  },
+	  "restart": {
+        "name": "restart",
+        "syntax": "restart"
+	  },
+	  "rt": {
+        "name": "rt",
+        "syntax": "rt"
+	  },
+	  "jjoin": {
+        "name": "jjoin",
+        "syntax": "jjoin, jjoin int"
+	  },
+	  "lleave": {
+        "name": "lleave",
+        "syntax": "lleave"
+	  },
+	  "shadow": {
+        "name": "shadow",
+        "syntax": "shadow int"
+	  },
+	  "hhelp": {
+        "name": "hhelp",
+        "syntax": "hhelp"
+	  }
+	}
+  }

@@ -1,13 +1,12 @@
 console.log('starting...');
 const Discord = require('discord.js');
 const bot = new Discord.Client();
-bot.login('');
+bot.login('NTcwMzk5NDYxMzUyODAwMjg1.XMByrQ.kKLqhtcxCQYyTgKrP00cWEg1njg');
 bot.on('ready', () => {
     console.log('Connected');
     //bot.user.setActivity('$help');
     bot.user.setPresence({ game: { name: '$help' }, status: 'online' })
 });
-
 
 var input;
 /*
@@ -573,6 +572,121 @@ bot.on('message', (message) => {
                 if (tempBool) {
                     jsonobjectTemp.value[getIdFromMsg(msg.author.id)].tttB = [':zero:', ':one:', ':two:', ':three:', ':four:', ':five:', ':six:', ':seven:', ':eight:'];
                 }
+            }
+            else if (input[0] == 's') {
+                const gcBlank = ':blue_square:';
+                const gcPlayer = ':neutral_face:';
+                const gcApple = ':apple:';
+                const gcTail = ':green_square:';
+                //const gcTail = ':rainbow_flag:';
+                if (!jsonobjectTemp.value[getIdFromMsg(msg.author.id)]) {
+                    jsonobjectTemp.value[getIdFromMsg(msg.author.id)] = new Object();
+
+                    //0 based index
+                    jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcP = [5, 5];
+                    jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcT = [];
+                    jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcW = 10;
+                    jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcH = 10;
+                    jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcA = [Math.round(Math.random() * (jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcH) - 1), Math.round(Math.random() * (jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcW - 1))];
+                    jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcS = 0;
+                    jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcE = false;
+                }
+
+                if (input[1]) {
+                    if ((jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcA[0] == jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcP[0]) && (jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcA[1] == jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcP[1])) {
+                        jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcA = [Math.round(Math.random() * (jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcH - 1)), Math.round(Math.random() * (jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcW - 1))];
+                        jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcT.push([jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcP[0], jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcP[1]]);
+                        jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcS += 1;
+                    }
+
+                    for (var i = (jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcT.length - 1); i >= 0; i--) {
+                        if (i == 0) {
+                            jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcT[i] = [jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcP[0], jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcP[1]];
+                        }
+                        else {
+                            jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcT[i] = jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcT[i - 1];
+                        }
+                    }
+
+                    if (input[1] == 'a') {
+                        jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcP[1] += -1;
+                    }
+                    else if (input[1] == 'd') {
+                        jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcP[1] += 1;
+                    }
+                    else if (input[1] == 'w') {
+                        jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcP[0] += -1;
+                    }
+                    else if (input[1] == 's') {
+                        jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcP[0] += 1;
+                    }
+
+                    for (var i = 0; i < jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcT.length; i++) {
+                        if ((jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcT[i][0] == jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcP[0]) && (jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcT[i][1] == jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcP[1])) {
+                            jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcE = true;
+                        }
+                    }
+				}
+
+				var tempString = '';
+				for (var i = 0; i < jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcW; i++) {
+					for (var j = 0; j < jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcH; j++) {
+						var tempBool2 = true;
+						for (var k = 0; k < jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcT.length; k++) {
+							if ((i == jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcT[k][0]) && (j == jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcT[k][1])) {
+								tempString += gcTail;
+								tempBool2 = false;
+								break;
+							}
+						}
+
+						if (tempBool2) {
+							if ((i == jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcP[0]) && (j == jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcP[1])) {
+								tempString += gcPlayer;
+							}
+							else if ((i == jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcA[0]) && (j == jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcA[1])) {
+								tempString += gcApple;
+							}
+							else {
+								tempString += gcBlank;
+							}
+						}
+					}
+					tempString += '\n';
+				}
+				msg.channel.send(tempString);
+				console.log(jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcA);
+
+
+				if (jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcE) {
+					msg.channel.send('You lost. Your score was ' + jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcS + ' (' + jsonobject.value[getIdFromMsg(msg.author.id)].turd + ' + ' + jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcS + ').');
+                    if (!jsonobject.value['gc']) {
+                        jsonobject.value['gc'] = new Object();
+                        jsonobject.value['gc'].gcHigh = -1;
+                        jsonobject.value['gc'].gcHighName = 'name';
+                        jsonobject.value['gc'].gcHighId = 'id';
+                    }
+                    if (jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcS > jsonobject.value.gcHigh) {
+                        jsonobject.value['gc'].gcHigh = jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcS;
+                        jsonobject.value['gc'].gcHighName = msg.author.username;
+                        jsonobject.value['gc'].gcHighId = msg.author.id;
+                        jsonobject.value[getIdFromMsg(msg.author.id)].turd = jsonobject.value[getIdFromMsg(msg.author.id)].turd + jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcS * 2;
+                    }
+                    else {
+                        jsonobject.value[getIdFromMsg(msg.author.id)].turd = jsonobject.value[getIdFromMsg(msg.author.id)].turd + jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcS;
+                    }
+
+                    msg.channel.send(jsonobject.value['gc'].gcHighName + ' has the highest score at ' + jsonobject.value['gc'].gcHigh + '.');
+
+					jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcP = [5, 5];
+					jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcT = [];
+					jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcA = [9, 9];
+					jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcW = 10;
+					jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcH = 10;
+					jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcS = 0;
+                    jsonobjectTemp.value[getIdFromMsg(msg.author.id)].gcE = false;
+                    saveData()
+				}
             }
             else if (input[0] == 'hlep') {
                 try {

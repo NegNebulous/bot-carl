@@ -1,0 +1,120 @@
+{
+  "value": {
+    "345633153781596160": {
+      "name": "NoiseGenerator",
+      "turd": 8,
+      "number": 34,
+      "attempts": 0,
+      "requestTo": null,
+      "requestAmount": null,
+      "sentTime": 1578522118545
+    },
+    "440619821219053570": {
+      "name": "MukdipTheMudkip",
+      "turd": -44,
+      "number": 43,
+      "attempts": 0,
+      "requestTo": null,
+      "requestAmount": 0
+    },
+    "259493263679946774": {
+      "name": "armedturret",
+      "turd": 7.461538461538462,
+      "number": 25,
+      "attempts": 0,
+      "requestTo": null,
+      "requestAmount": 0,
+      "sentTime": 1578523872399
+    },
+    "263330699375935489": {
+      "name": "Dreptu Mig",
+      "turd": -1355,
+      "number": 75,
+      "attempts": 0,
+      "requestTo": 259493263679946780,
+      "requestAmount": 0,
+      "sentTime": 1578531122154
+    },
+    "302391003531313154": {
+      "name": "Izyda",
+      "turd": 0,
+      "number": 48,
+      "attempts": 0,
+      "requestTo": null,
+      "requestAmount": null,
+      "sentTime": 1578522002534
+    },
+    "451181104683024384": {
+      "name": "Zed Leppin",
+      "turd": 4,
+      "number": 87,
+      "attempts": 0,
+      "requestTo": null,
+      "requestAmount": 0,
+      "sentTime": 1578522925443
+    },
+    "293868423740653568": {
+      "name": "StorageUnit",
+      "turd": 95,
+      "number": 22,
+      "attempts": 0,
+      "requestTo": null,
+      "requestAmount": 0
+    },
+    "290630045783949313": {
+      "name": "Stupidify",
+      "turd": 0,
+      "number": 22,
+      "attempts": 0,
+      "requestTo": null,
+      "requestAmount": 0
+    },
+    "490688763132116992": {
+      "name": "AG",
+      "turd": 2,
+      "number": 58,
+      "attempts": 0,
+      "requestTo": null,
+      "requestAmount": 0
+    },
+    "358254228054999041": {
+      "name": "illogicalFox",
+      "turd": 8,
+      "number": 59,
+      "attempts": 0,
+      "requestTo": null,
+      "requestAmount": 0
+    },
+    "259779388130852865": {
+      "name": "Mason",
+      "turd": 0,
+      "number": 72,
+      "attempts": 0,
+      "requestTo": null,
+      "requestAmount": 0,
+      "sentTime": 1578523238053
+    },
+    "203206356402962432": {
+      "name": "Neg_Nebulous",
+      "turd": 17,
+      "number": 73,
+      "attempts": 0,
+      "requestTo": null,
+      "requestAmount": null,
+      "sentTime": 1579842437289
+    },
+    "312357381646450688": {
+      "name": "Cheelai",
+      "turd": 1,
+      "number": 22,
+      "attempts": 0,
+      "requestTo": null,
+      "requestAmount": 0
+    },
+    "gc": {
+      "gcHigh": 17,
+      "gcHighName": "Zed Leppin",
+      "gcHighId": "451181104683024384"
+    }
+  }
+}

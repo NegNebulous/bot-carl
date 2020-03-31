@@ -1,0 +1,179 @@
+console.log('starting...');
+const Discord = require('discord.js');
+const bot = new Discord.Client();
+bot.login('NTcwMzk5NDYxMzUyODAwMjg1.XMByrQ.kKLqhtcxCQYyTgKrP00cWEg1njg');
+bot.on('ready', () => {
+    console.log('Connected');
+});
+
+var firstLoop = 1;
+var loop = 0;
+var rng4 = 0;
+var msg = '';
+var jsonobject;
+var fileContents;
+var input;
+
+
+const editJsonFile = require("edit-json-file");
+let file = editJsonFile(`${__dirname}/currency.json`);
+
+
+var fs = require('fs');
+var path = require('path');
+
+function bufferFile(relPath) {
+    return fs.readFileSync(path.join(__dirname, relPath));
+}
+
+function turd(rng4) {
+    rng4 = Math.floor((Math.random() * 98) + 1);
+    return rng4
+}
+
+//message.reply('pong');
+bot.on('message', (message) => {    
+    if (message.author.bot != true) {
+    
+        //ping
+        if (message.isMentioned(bot.user)) {
+            message.channel.send('You\'ll die for your crimes.');
+        }
+    
+        //comands
+        if (message.content.startsWith('<<') || message.content.startsWith('>>')) {
+            console.log('');
+            console.log('loop ' + loop);
+
+            jsonobject = JSON.parse(bufferFile('\currency.json'));
+            msg = message.content.substr(2, message.content.length);
+
+            input = msg.split(' ');
+
+            //turd, check # of turds
+            if (input[0] == 'turd') {
+                if (!jsonobject.value[message.author.id]) {
+                    jsonobject.value[message.author.id] = new Object();
+                    jsonobject.value[message.author.id].name = message.author.username;
+                    jsonobject.value[message.author.id].turd = 1;
+                    jsonobject.value[message.author.id].number = 22;
+                    jsonobject.value[message.author.id].attempts = 0;
+                    file.set(jsonobject);
+                    file.save();
+                }
+                //console.log(message.author.username + ' has ' + jsonobject.value[message.author.id].turd + ' turds');
+                message.channel.send(message.author.username + ' has ' + jsonobject.value[message.author.id].turd + ' turds');
+            }
+            //number guessing
+            //var temp = msg.substr(0, 1);
+            else if (input[0] == 'gn') {
+                msg = message;
+                msgc = message.content.substr(5, message.content.length);
+
+                console.log(msgc);
+                jsonobject = JSON.parse(bufferFile('\currency.json'));
+                if (!jsonobject.value[msg.author.id]) {
+                    message.channel.send('You must Type `>>turd` before getting turds.');
+                }
+                else {
+                    if ((msgc < 100) && (msgc > 0)) {
+                        jsonobject = JSON.parse(bufferFile('\currency.json'));
+                        //for some reason >=4 is 5 attempts
+                        if (jsonobject.value[msg.author.id].attempts >= 6) {
+                            if (msgc == jsonobject.value[msg.author.id].number) {
+                                jsonobject.value[msg.author.id].turd = jsonobject.value[msg.author.id].turd + (6 - jsonobject.value[msg.author.id].attempts);
+                                jsonobject.value[msg.author.id].number = turd();
+            
+                                message.channel.send('Nice, you got the code! You took ' + jsonobject.value[msg.author.id].attempts + ' tries to get the code. You will gain ' + (6 - jsonobject.value[msg.author.id].attempts) + ' turd.');
+                                message.channel.send('A new code has been made.');
+            
+                                jsonobject.value[msg.author.id].attempts = 1;
+                            }
+                            else {
+                                message.channel.send('You failed! It took more than 5 attempts for you to get the code (' + jsonobject.value[msg.author.id].number + '). You will lose 2 turds.');
+                                jsonobject.value[msg.author.id].turd = jsonobject.value[message.author.id].turd - 2;
+                                jsonobject.value[msg.author.id].number = turd();
+                                jsonobject.value[msg.author.id].attempts = 1;
+                            }
+                            
+                        }
+                        else {
+                            if (msgc == jsonobject.value[msg.author.id].number) {
+                                jsonobject.value[msg.author.id].turd = jsonobject.value[msg.author.id].turd + (5 - jsonobject.value[msg.author.id].attempts);
+                                jsonobject.value[msg.author.id].number = turd();
+            
+                                message.channel.send('Nice, you got the code! You took ' + jsonobject.value[msg.author.id].attempts + ' tries to get the code. You will gain ' + (5 - jsonobject.value[msg.author.id].attempts) + ' turd.');
+                                message.channel.send('A new code has been made.');
+            
+                                jsonobject.value[msg.author.id].attempts = 1;
+                            }
+                            else {
+                                if (msgc < jsonobject.value[msg.author.id].number) {
+                                    message.channel.send('Higher.');
+                                    jsonobject.value[msg.author.id].attempts = jsonobject.value[msg.author.id].attempts + 1;
+                                }
+                                else if (msgc > jsonobject.value[msg.author.id].number) {
+                                    message.channel.send('Lower.');
+                                    jsonobject.value[msg.author.id].attempts = jsonobject.value[msg.author.id].attempts + 1;
+                                }
+                            }
+                        }
+                        file.set(jsonobject);
+                        file.save();
+                    }
+                    else {
+                        message.channel.send('Guess a number between 0 and 100.');
+                    }
+                }
+                
+            }
+            else if (input[0] == 'help') {
+                jsonobject = JSON.parse(bufferFile('\command.json'));
+                if (!input[1]) {
+                    var msgsend = '';
+                    msgsend = msgsend + 'commands: ';
+                    for (var i = 0; i < Object.keys(jsonobject.command).length; i++) {
+                        msgsend = msgsend + '\n    ' + jsonobject.command[Object.keys(jsonobject.command)[i]].name + ': ' + jsonobject.command[Object.keys(jsonobject.command)[i]].description;
+                    }
+                    message.channel.send('```' + msgsend + '```');
+                }
+                else {
+                    for (var i = 0; i < Object.keys(jsonobject.command).length; i++) {
+                        if (jsonobject.command[Object.keys(jsonobject.command)[i]].name == input[1]) {
+                            //var msgsend = (jsonobject.command[Object.keys(jsonobject.command)[i]].name  + ':\n    Syntax: ' + '`' + jsonobject.command[Object.keys(jsonobject.command)[i]].syntax + '`' + '\n    Example: ' + '`' + jsonobject.command[Object.keys(jsonobject.command)[i]].example + '`');
+                            var msgsend = (jsonobject.command[Object.keys(jsonobject.command)[i]].name  + ':\n    Syntax: ' + jsonobject.command[Object.keys(jsonobject.command)[i]].syntax + '\n    Example: ' + jsonobject.command[Object.keys(jsonobject.command)[i]].example);
+                            message.channel.send('```' + msgsend + '```');
+                        }
+                    }
+                }
+                jsonobject = JSON.parse(bufferFile('\currency.json'));
+            }
+            else {
+                if (input[0].length > 16) {
+                    message.channel.send('no such command:\n    ' + '`' + input[0].substr(0, 8) + '`');
+                }
+                else {
+                    message.channel.send('no such command:\n    ' + '`' + input[0] + '`');
+                }
+            }
+
+            console.log(message.author.username + ' ran \'' + input[0] + '\', userId: ' + message.author.id);
+            console.log(jsonobject.value[message.author.id]);
+
+            firstLoop = 0;
+            loop = loop + 1;
+        }
+    }
+});
+
+/*
+    if (rng4 == 420) {
+        var channels = bot.channels.array();
+        for (var i = 0;i < channels.length; i++){
+            if(channels[i].name == 'general'){
+                channels[i].send("Hey, hey, guess what the secret number is?")
+            }
+        }
+
+    }
+*/
